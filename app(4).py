@@ -18,7 +18,7 @@ st.sidebar.title("🧭 Navigation")
 # Main menu selection
 main_menu = st.sidebar.selectbox(
     "Select Team:",
-    ["3.1 Siddhi Shrestha", "3.2 Dandi Ram", "3.3 Arinita"]
+    ["3.1 Siddhi Shrestha", "3.2 Dandi Ram", "3.3 Arinita","End Year Progress against Annual target"]
 )
 
 st.sidebar.markdown("---")
@@ -33,8 +33,9 @@ if main_menu == "3.1 Siddhi Shrestha":
             "3.1.3 Basic sanitation gained ",
             "3.1.4 Schools with WASH ",
             "HCFs with WASH ",
-            "3.1.6 Humanitarian water support ",
-            "3.1.7 Humanitarian sanitation & hygiene ",
+            "3.1.5 Humanitarian water support ",
+            "3.1.6 Humanitarian sanitation & hygiene ",
+            "3.1.7 End Year Progress against Annual target "
         ]
     )
 elif main_menu == "3.2 Dandi Ram":
@@ -47,11 +48,7 @@ elif main_menu == "3.3 Arinita":
         "Select Indicator:",
         ["Coming Soon..."]
     )
-elif main_menu == "End Year Progress against Annual target":
-    page = st.sidebar.radio(
-        "Select Indicator:",
-        ["Coming Soon..."]
-    )
+
 st.sidebar.markdown("---")
 
 # Sidebar for file path configuration
@@ -93,6 +90,7 @@ else:
 
 # Nepal Field Office Coordinates
 OFFICE_COORDINATES = {
+    'NCO': {'lat': 27.7172, 'lon': 85.3240, 'province': 'Bagmati', 'color': '#4B0082'},
     'Janakpur': {'lat': 26.7288, 'lon': 85.9244, 'province': 'Madhesh', 'color': '#0088FE'},
     'Dhangadi': {'lat': 28.6940, 'lon': 80.5831, 'province': 'Sudurpashchim', 'color': '#00C49F'},
     'Bhairahawa': {'lat': 27.5047, 'lon': 83.4503, 'province': 'Lumbini', 'color': '#FFBB28'},
@@ -135,13 +133,14 @@ def process_office_data(df):
     cond_2025 = df[year_col] == 2025
     
     office_mapping = {
+        'nco': {'name': 'NCO', 'target': 13,648},
         'janakpur': {'name': 'Janakpur', 'target': 7987},
         'dhangadi': {'name': 'Dhangadi', 'target': 6432},
         'bhairahawa': {'name': 'Bhairahawa', 'target': 9659},
         'surkhet': {'name': 'Surkhet', 'target': 13822}
     }
     
-    offices = ['janakpur', 'dhangadi', 'bhairahawa', 'surkhet']
+    offices = ['nco', 'janakpur', 'dhangadi', 'bhairahawa', 'surkhet']
     office_data = []
     
     for office_key in offices:
@@ -201,12 +200,13 @@ def process_palika_data(df):
     
     df_filtered = df[cond_completed & cond_safe & cond_2025].copy()
     
-    # Standardize office names
+    # NCO 포함 5개 office mapping
     office_mapping = {
-        'janakpur': 'Janakpur',
-        'dhangadi': 'Dhangadi',
-        'bhairahawa': 'Bhairahawa',
-        'surkhet': 'Surkhet'
+        'nco': {'name': 'NCO', 'target': 13648},
+        'janakpur': {'name': 'Janakpur', 'target': 7987},
+        'dhangadi': {'name': 'Dhangadi', 'target': 6432},
+        'bhairahawa': {'name': 'Bhairahawa', 'target': 9659},
+        'surkhet': {'name': 'Surkhet', 'target': 13822}
     }
     
     def map_office(office_str):
@@ -665,5 +665,4 @@ except FileNotFoundError:
 except Exception as e:
     st.error(f"❌ Error loading data: {str(e)}")
     import traceback
-
     st.code(traceback.format_exc())
