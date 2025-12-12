@@ -658,5 +658,3 @@ def create_facilities_map(facilities_df, facility_type="School"):
         ).add_to(nepal_map)
     
     return nepal_map
-
-def
