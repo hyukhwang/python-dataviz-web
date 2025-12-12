@@ -1,10 +1,3 @@
-다음 작성한 코드에 오류가 있어, 이를 해결해줘.
-출력 오류 내용:File "/mount/src/python-dataviz-web/app(4).py", line 136
-          'nco': {'name': 'NCO', 'target': 13,648},
-                                                ^
-SyntaxError: ':' expected after dictionary key
-
-작성한 코드:
 import streamlit as st
 import pandas as pd
 import os
@@ -673,4 +666,5 @@ except FileNotFoundError:
 except Exception as e:
     st.error(f"❌ Error loading data: {str(e)}")
     import traceback
+
     st.code(traceback.format_exc())
