@@ -133,7 +133,7 @@ def process_office_data(df):
     cond_2025 = df[year_col] == 2025
     
     office_mapping = {
-        'nco': {'name': 'NCO', 'target': 13,648},
+        'nco': {'name': 'NCO', 'target': 13648},
         'janakpur': {'name': 'Janakpur', 'target': 7987},
         'dhangadi': {'name': 'Dhangadi', 'target': 6432},
         'bhairahawa': {'name': 'Bhairahawa', 'target': 9659},
@@ -668,3 +668,4 @@ except Exception as e:
     import traceback
 
     st.code(traceback.format_exc())
+
