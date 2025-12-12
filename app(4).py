@@ -28,14 +28,13 @@ if main_menu == "3.1 Siddhi Shrestha":
     page = st.sidebar.radio(
         "Select Indicator:",
         [
-            "3.1.1 Safe water access 🚰",
-            "3.1.2 Water-safe communities 💧",
-            "3.1.3 Basic sanitation gained 🚻",
-            "3.1.4 Schools with WASH 🏫",
-            "3.1.5 HCFs with WASH 🏥",
-            "3.1.6 Humanitarian water support ⚠️",
-            "3.1.7 Humanitarian sanitation & hygiene 🧼",
-            "3.1.8 End Year Progress against Annual target 📊"
+            "3.1.1 Safe water access ",
+            "3.1.2 Water-safe communities ",
+            "3.1.3 Basic sanitation gained ",
+            "3.1.4 Schools with WASH ",
+            "HCFs with WASH ",
+            "3.1.6 Humanitarian water support ",
+            "3.1.7 Humanitarian sanitation & hygiene ",
         ]
     )
 elif main_menu == "3.2 Dandi Ram":
@@ -48,7 +47,11 @@ elif main_menu == "3.3 Arinita":
         "Select Indicator:",
         ["Coming Soon..."]
     )
-
+elif main_menu == "End Year Progress against Annual target":
+    page = st.sidebar.radio(
+        "Select Indicator:",
+        ["Coming Soon..."]
+    )
 st.sidebar.markdown("---")
 
 # Sidebar for file path configuration
@@ -662,4 +665,5 @@ except FileNotFoundError:
 except Exception as e:
     st.error(f"❌ Error loading data: {str(e)}")
     import traceback
+
     st.code(traceback.format_exc())
